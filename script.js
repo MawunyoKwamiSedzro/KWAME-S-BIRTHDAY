@@ -1,50 +1,40 @@
-<script>
+const song = document.getElementById("song");
+const btn = document.getElementById("playBtn");
+const status = document.getElementById("status");
 
-const song = document.getElementById('song');
 
-const btn = document.getElementById('playBtn');
+btn.addEventListener("click", async () => {
 
-const status = document.getElementById('status');
- 
-btn.addEventListener('click', async () => {
+    try {
 
-  try {
+        if (song.paused) {
 
-    if (song.paused) {
+            await song.play();
 
-      await song.play();
+            btn.textContent = "⏸ Pause Song";
+            status.textContent = "Your birthday song is playing ♥";
 
-      btn.textContent = '⏸ Pause Song';
+        } else {
 
-      status.textContent = 'Your birthday song is playing ♥';
+            song.pause();
 
-    } else {
+            btn.textContent = "🎵 Click to Play";
+            status.textContent = "Song paused — tap to continue.";
 
-      song.pause();
+        }
 
-      btn.textContent = '🎵 Click to Play';
+    } catch (e) {
 
-      status.textContent = 'Song paused — tap to continue.';
+        status.textContent = "Tap the button again to start the song.";
 
     }
 
-  } catch (e) {
-
-    status.textContent = 'Tap the button again to start the song.';
-
-  }
-
 });
 
-song.addEventListener('ended', () => {
 
-  btn.textContent = '🎵 Play Again';
+song.addEventListener("ended", () => {
 
-  status.textContent = 'Your birthday song has finished. ♥';
+    btn.textContent = "🎵 Play Again";
+    status.textContent = "Your birthday song has finished. ♥";
 
 });
-</script>
-</body>
-</html>
-
- 
